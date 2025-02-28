@@ -362,3 +362,4 @@ cask.qg1.apps.qualys.ae
 cask.qg1.apps.qualys.co.uk
 cask.qg1.apps.qualys.com.au
 cask.qg1.apps.qualysksa.com
+davidi792.github.io
