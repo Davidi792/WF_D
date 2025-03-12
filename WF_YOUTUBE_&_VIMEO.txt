@@ -51,3 +51,4 @@ youtubei.googleapis.com
 ytimg.com
 img.youtube.com
 ytimg.l.google.com
+www.youtube.com
