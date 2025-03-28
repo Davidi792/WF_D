@@ -363,3 +363,13 @@ cask.qg1.apps.qualys.co.uk
 cask.qg1.apps.qualys.com.au
 cask.qg1.apps.qualysksa.com
 davidi792.github.io
+helpcenter.netwrix.com
+netwrix.com
+netwrix.es
+img.netwrix.com
+helpcenter-be.netwrix.com
+api.crowdstrike.com
+defense.conferdeploy.net
+endpointprotector.com
+endpointprotector.es
+secure.leadforensics.com
