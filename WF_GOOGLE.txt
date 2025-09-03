@@ -84,3 +84,5 @@ encrypted-tbn2.gstatic.com
 encrypted-tbn3.gstatic.com
 streetviewpixels-pa.googleapis.com
 chat.google.com
+jnn-pa.googleapis.com
+chromedriver.chromium.org
