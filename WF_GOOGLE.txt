@@ -73,7 +73,6 @@ fonts.gstatic.com
 maps.googleapis.com
 static.doubleclick.net
 www.gstatic.com
-gemini.google.com
 td.doubleclick.net
 googleads.g.doubleclick.net
 www.google-analytics.com
