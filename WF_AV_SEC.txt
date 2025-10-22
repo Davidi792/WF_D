@@ -373,3 +373,11 @@ defense.conferdeploy.net
 endpointprotector.com
 endpointprotector.es
 secure.leadforensics.com
+status.geotrust.com
+status.rapidssl.com
+cdp.geotrust.com
+cdp.rapidssl.com
+pkiclient-updater.digicert.com
+pki-downloads.digicert.com
+rapidssl.com
+
