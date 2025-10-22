@@ -373,6 +373,7 @@ defense.conferdeploy.net
 endpointprotector.com
 endpointprotector.es
 secure.leadforensics.com
+status.thawte.com
 status.geotrust.com
 status.rapidssl.com
 cdp.geotrust.com
@@ -380,4 +381,6 @@ cdp.rapidssl.com
 pkiclient-updater.digicert.com
 pki-downloads.digicert.com
 rapidssl.com
-
+d.namequery.com
+thawte.com
+namequery.com
