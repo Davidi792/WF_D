@@ -79443,3 +79443,5 @@ app.koofr.net
 koofr.net
 readytoeat.com
 daum.net
+naver.com
+sisileae.com
