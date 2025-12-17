@@ -384,3 +384,4 @@ rapidssl.com
 d.namequery.com
 thawte.com
 namequery.com
+edr.qg3.apps.qualys.com
