@@ -429,3 +429,6 @@ appsuggestions.teams.microsoft.com
 pub-ent-uswe-16-t.trouter.teams.microsoft.com
 pub-ent-usnc-10-t.trouter.teams.microsoft.com
 servicetrust.microsoft.com
+augloop.svc.cloud.microsoft
+outlook.cloud.microsoft
+teams.cloud.microsoft
