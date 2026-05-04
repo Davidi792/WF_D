@@ -68,3 +68,6 @@ p67-content.icloud.com
 play.samsungcloud.com
 capi.samsungcloud.com
 mask.icloud.com
+edge-008.usuqo4.icloud-content.com
+cstat.cdn-apple.com
+ml.cdn-apple.com
