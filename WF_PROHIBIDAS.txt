@@ -82260,7 +82260,8 @@ accounting-invoices.duckdns.org
 primeserver13.duckdns.org
 privatemyhost.duckdns.org
 julytimeshow.duckdns.org
-baadigi.com / api.baadigi.com
+baadigi.com
+api.baadigi.com
 admin.baadigi.com
 spacelogsapp.com
 yourtryinc.com
