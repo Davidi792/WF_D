@@ -67,3 +67,4 @@ p57-content.icloud.com
 p67-content.icloud.com
 play.samsungcloud.com
 capi.samsungcloud.com
+mask.icloud.com
