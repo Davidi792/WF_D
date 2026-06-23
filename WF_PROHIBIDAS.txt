@@ -82292,3 +82292,9 @@ yt-comp3.chocolatemoo53.com
 yt-comp4.chocolatemoo53.com
 yt-comp5.chocolatemoo53.com
 yt-comp6.chocolatemoo53.com
+libremdb.chocolatemoo53.com
+tw.chocolatemoo53.com
+db.chocolatemoo53.com
+bsky.chocolatemoo53.com
+search.chocolatemoo53.com
+go.chocolatemoo53.com
