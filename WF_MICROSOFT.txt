@@ -432,3 +432,10 @@ servicetrust.microsoft.com
 augloop.svc.cloud.microsoft
 outlook.cloud.microsoft
 teams.cloud.microsoft
+copilot.microsoft.com
+copilot.fun
+wps-picasso-prod-eus2.webpubsub.azure.com
+copilot.cloud.microsoft
+cloud.microsoft
+uhf.microsoft.com
+res.cdn.office.net
