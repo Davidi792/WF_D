@@ -82300,3 +82300,9 @@ search.chocolatemoo53.com
 go.chocolatemoo53.com
 error-pagsappweblnk.sbs
 rsalberts.com
+feedreader.com
+addons.mozilla.org
+chromewebstore.google.com
+microsoftedge.microsoft.com
+pluto.tv
+o.pluto.tv
