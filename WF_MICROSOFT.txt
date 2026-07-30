@@ -439,3 +439,6 @@ copilot.cloud.microsoft
 cloud.microsoft
 uhf.microsoft.com
 res.cdn.office.net
+environment.api.powerplatform.com
+api.powerplatform.com
+azurefd.net
