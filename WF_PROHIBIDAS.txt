@@ -82306,3 +82306,4 @@ chromewebstore.google.com
 microsoftedge.microsoft.com
 pluto.tv
 o.pluto.tv
+wwwimage-us.plutostatic.tv
