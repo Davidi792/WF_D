@@ -82307,3 +82307,7 @@ microsoftedge.microsoft.com
 pluto.tv
 o.pluto.tv
 wwwimage-us.plutostatic.tv
+vinted.com
+vinted.net
+vinted.lt
+vinted.es
