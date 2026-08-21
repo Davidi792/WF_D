@@ -82319,3 +82319,7 @@ spotify.com
 123moviesd.xyz
 factureo.moocies.fr
 moocies.fr
+open.spotify.com
+monochrome.tf
+invidious.tiekoetter.com
+tiekoetter.com
