@@ -1,0 +1,100 @@
+Primero: auditoría
+
+Desde cualquier DC, PowerShell como administrador:
+
+cd C:\DR_GPO
+
+.\Apply-GPO_CZ_BROWSERS-AnyDC.ps1 -Mode Audit
+
+No modifica nada. Detectará automáticamente dominio, PDC Emulator, DC desde el que ejecutas, GPO y enlace.
+
+Aplicar/actualizar la GPO
+.\Apply-GPO_CZ_BROWSERS-AnyDC.ps1
+
+El script:
+
+hace backup de la GPO existente;
+actualiza Chrome, Edge y Firefox;
+corrige las listas de URLs;
+mantiene las correcciones de extensiones;
+limpia las configuraciones User antiguas;
+mantiene la GPO enlazada a DC=corp,DC=callzilla,DC=net;
+establece Link Order 4;
+deja Enforced=False;
+valida que el GPT exista en SYSVOL de todos los DC;
+genera reportes PRE/POST.
+Aplicar y además forzar replicación de AD
+
+Te recomiendo usar:
+
+.\Apply-GPO_CZ_BROWSERS-AnyDC.ps1 -SyncReplication
+
+Esto ejecutará además:
+
+repadmin /syncall /AdeP
+
+y posteriormente comprobará algo equivalente a:
+
+AZDOMAIN2.corp.callzilla.net    Present=True
+AZDOMAIN3.corp.callzilla.net    Present=True
+
+para la carpeta de la GPO en SYSVOL.
+
+Si quieres actualizar también el DC donde ejecutas el script
+
+Utiliza:
+
+.\Apply-GPO_CZ_BROWSERS-AnyDC.ps1 -SyncReplication -RefreshThisComputer
+
+Esto además ejecutará en ese DC:
+
+gpupdate /target:computer /force
+
+Por ejemplo, si lo ejecutas en AZDOMAIN3:
+
+AZDOMAIN3
+   │
+   ├── Localiza corp.callzilla.net
+   ├── Localiza GPO_CZ_BROWSERS
+   ├── Backup
+   ├── Actualiza GPO
+   ├── Verifica link
+   ├── repadmin /syncall
+   ├── Comprueba SYSVOL AZDOMAIN2
+   ├── Comprueba SYSVOL AZDOMAIN3
+   └── gpupdate AZDOMAIN3
+Comando que usaría ahora
+
+En cualquiera de tus dos DC:
+
+.\Apply-GPO_CZ_BROWSERS-AnyDC.ps1 -SyncReplication -RefreshThisComputer
+
+No agregues todavía:
+
+-EnforceExtensionAllowlistOnly
+
+porque eso cambiaría el comportamiento para bloquear todas las extensiones que no estén explícitamente autorizadas.
+
+La ejecución normal mantiene:
+
+ExtensionAllowOnly = False
+
+igual que la GPO que acabamos de desplegar.
+
+El script deja todos los respaldos y evidencias bajo:
+
+C:\GPO_Backups\GPO_CZ_BROWSERS\YYYYMMDD_HHMMSS\
+
+incluyendo:
+
+PRE_GPO_Report.xml
+PRE_GPO_Report.html
+POST_GPO_Report.xml
+POST_GPO_Report.html
+SYSVOL_DC_Check.csv
+Deployment_Summary.csv
+
+Puedes ejecutarlo primero con -Mode Audit; si me pegas esa salida, verificamos que también esta versión portable esté detectando correctamente AZDOMAIN2/AZDOMAIN3 antes de aplicarla.
+
+Apply-GPO_CZ_BROWSERS-AnyDC.ps1
+Archivo

@@ -1,0 +1,166 @@
+PowerShell completo
+
+SHA-256:
+
+e49b667fcefed0fcff7e69cc85f84eb4cd4dd6a6bd28643b689cc18f6e24ba51
+
+El script está protegido para trabajar únicamente con:
+
+Dominio : corp.callzilla.net
+GPO     : GPO_CZ_BROWSERS
+GUID    : 578C78CF-DDAE-48D2-9B85-AE7F22CA403C
+
+Y explícitamente evita tocar la antigua:
+
+30E8EC6A-8729-439B-82AC-00FE57DA16FE
+
+Qué contiene
+
+La configuración completa incluye:
+
+    Chrome, Edge y Firefox en Computer Configuration.
+
+    Limpieza de configuraciones antiguas en User Configuration.
+
+    Bloqueo de Incognito / InPrivate / Private Browsing.
+
+    Guest Mode deshabilitado.
+
+    Homepage, New Tab, Startup y Search Provider.
+
+    Las 12 reglas normalizadas de bloqueo web.
+
+    Extension Allowlist corregidas.
+
+    Chrome Extension Forcelist.
+
+    Eliminación de configuraciones obsoletas de EdgeHTML.
+
+    Firefox WebsiteFilter.
+
+    Firefox Homepage.
+
+    Link de la GPO al dominio con Order 4, Enabled y Not Enforced.
+
+    Backup PRE y reportes PRE/POST.
+
+    Comprobación de SYSVOL en todos los DC.
+
+    Replicación opcional.
+
+    Reintentos automáticos para 0x80070020 y 0x80070005.
+
+Y, especialmente, quedó incorporada la última configuración:
+
+CHROME
+ClearBrowsingDataOnExitList
+    1 = cached_images_and_files
+
+BackgroundModeEnabled = 0
+
+Chrome documenta cached_images_and_files como el tipo específico para eliminar únicamente imágenes y archivos en caché al cerrar.
+
+EDGE
+ClearBrowsingDataOnExit             -> Disabled
+ClearCachedImagesAndFilesOnExit     = 1
+BackgroundModeEnabled               = 0
+StartupBoostEnabled                 = 0
+
+Esto evita que ClearBrowsingDataOnExit elimine todos los datos; Microsoft confirma que esa política tendría precedencia sobre la limpieza exclusiva de caché.
+
+FIREFOX
+SanitizeOnShutdown
+    Cache        = 1
+    Cookies      = 0
+    FormData     = 0
+    History      = 0
+    Sessions     = 0
+    SiteSettings = 0
+    Locked       = 1
+
+Esa estructura corresponde directamente a la configuración GPO documentada por Mozilla.
+Además corregí el problema que acabamos de encontrar
+
+No ejecuta esto para Firefox:
+
+Set-GPRegistryValue ... -ValueName 'SanitizeOnShutdown' -Disable
+
+que fue precisamente la operación que nos produjo:
+
+0x80070005 E_ACCESSDENIED
+
+Ahora escribe directamente:
+
+SanitizeOnShutdown\Cache
+SanitizeOnShutdown\Cookies
+SanitizeOnShutdown\FormData
+SanitizeOnShutdown\History
+SanitizeOnShutdown\Sessions
+SanitizeOnShutdown\SiteSettings
+SanitizeOnShutdown\Locked
+
+Ejecución desde cualquier DC
+
+Primero recomiendo auditoría:
+
+cd C:\DR_GPO
+
+.\Apply-GPO_CZ_BROWSERS-COMPLETE-AnyDC.ps1 -Mode Audit
+
+No realiza cambios.
+
+Después, para aplicar la política completa:
+
+.\Apply-GPO_CZ_BROWSERS-COMPLETE-AnyDC.ps1
+
+Aunque lo ejecutes desde:
+
+AZDOMAIN2
+AZDOMAIN3
+o cualquier futuro DC
+
+el script detecta automáticamente:
+
+(Get-ADDomain -Identity 'corp.callzilla.net').PDCEmulator
+
+y realiza todas las modificaciones contra ese DC. Set-GPRegistryValue y Backup-GPO soportan explícitamente seleccionar el controlador mediante -Server.
+Comando que recomiendo usar
+
+En tu caso:
+
+.\Apply-GPO_CZ_BROWSERS-COMPLETE-AnyDC.ps1 -SyncReplication
+
+Esto:
+
+1. Valida dominio
+2. Valida nombre de GPO
+3. Valida GUID
+4. Detecta PDC
+5. Hace backup
+6. Limpia User Configuration antigua
+7. Configura Chrome completo
+8. Configura Edge completo
+9. Configura Firefox completo
+10. Configura caché al cerrar
+11. Valida valores críticos
+12. Mantiene Link Order 4
+13. Genera reportes
+14. Fuerza replicación AD
+15. Verifica SYSVOL en todos los DC
+
+No recomiendo todavía:
+
+-EnforceExtensionAllowlistOnly
+
+porque cambiaría el comportamiento actual y bloquearía todas las extensiones que no aparezcan expresamente en la allowlist. Microsoft confirma que * en ExtensionInstallBlocklist junto con la allowlist produce precisamente ese comportamiento.
+
+Después de aplicarla, en un equipo piloto:
+
+gpupdate /force
+gpresult /scope computer /r
+
+y valida:
+
+Chrome  -> chrome://policy
+Edge    -> edge://policy
+Firefox -> about:policies
